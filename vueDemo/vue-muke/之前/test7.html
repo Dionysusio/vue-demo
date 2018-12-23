@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>todo list组件拆分</title>
+
+</head>
+<body>
+    <div id="root">
+        <div>
+            <input v-model="inputValue"/>
+            <button @click="handleSubmit">提交</button>
+        </div>
+            <ul>
+                <todo-item
+                v-for="(item,index) of list"
+                :key="index"
+                :content="item"
+                >
+
+                </todo-item>
+            </ul>
+
+    </div>
+
+    <script>
+
+        Vue.component('todo-item',{
+            props: ['content'],
+            template:　'<li @click="handleClick"> {{ content }}</li>',
+            methods: {
+                handleClick: function () {
+                    alert('clicked')
+                }// vue里的每个组件都可以写template,methods这些属性,所以每个vue的组件都是vue实例
+            }
+        })
+
+        var app = new Vue({
+            el:'#root',
+            //对于根实例,如果没有定义模板,它会以挂载点el下的所有内容当做模板来使用
+            data: {
+                inputValue: "",
+                list: []
+
+            },
+            methods:{
+                handleSubmit:function () {
+                    this.list.push(this.inputValue)
+                    this.inputValue = ""
+                 }
+              }
+            })
+
+    </script>
+
+</body>
+</html>

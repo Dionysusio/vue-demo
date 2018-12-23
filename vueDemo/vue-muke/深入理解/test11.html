@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>非父子组件传值(Bus/总线/发布订阅模式/观察者模式)</title>
+</head>
+<body>
+
+    <div id="root">
+        <child content="amy"></child>
+        <child content="meer"></child>
+        <!-- 上面的amy被点击的时候,需要把amy传给下面的meer
+            meer被点击的时候,把meer传给amy. 非父子组件间的传值.-->
+    </div>
+
+    <script>
+
+        Vue.prototype.bus = new Vue()
+        // 往Vue类的prototype上添加了个bus属性,而这个属性指向了Vue实例,
+        // 只要我们调用或者创建Vue实例的时候,每个组件都具有bus这个属性,都指向同一个Vue实例
+        Vue.component('child', {
+            data: function() {
+                return {
+                    selfContent: this.content
+                }
+            },
+            props: {
+                content: String
+            },
+            template: '<div @click="handleClick">{{ selfContent }}</div>',
+            methods: {
+                handleClick: function() {
+                    // alert(this.content)
+                    this.bus.$emit('change',this.selfContent)
+                    // 每个实例的bus上,都有$emit这个方法,同时带了个参数:this.content,将内容传进去
+
+                }
+            },
+            mounted: function () {//钩子函数
+                var this_ = this
+                this.bus.$on('change',function(msg) {
+                    // alert(msg)
+                    this_.selfContent = msg
+                })
+                // 其他组件监听事件,组件在挂载的时候,$on能监听bus上触发的事件
+                // 监听change事件,并alert 传进来的内容; 将传进来的内容赋值给原来的content
+            }
+        })
+
+        var vm = new Vue({
+            el: '#root'
+        })
+
+    </script>
+
+</body>
+</html>

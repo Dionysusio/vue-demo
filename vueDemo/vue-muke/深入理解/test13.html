@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>作用域插槽</title>
+</head>
+<body>
+
+    <div id="root">
+        <child>
+            <template slot-scope="props">
+                <li> {{props.item}} - dashabi </li>
+            </template>
+            <!-- 显示成什么样不是子组件决定了,而是父组件调用子组件的时候,传递一个模板,
+                逻辑:父组件调用的时候传递一个作用域插槽,并声明我要从子组件接收的数据都放在props里,
+                    并告诉子组件一个模板的信息,用于展示;
+                    子组件做循环,它的dom结构由外部传递进来时,使用作用域插槽.子组件可以给父组件插槽传递数据,
+                    此时父组件在外层必须使用template,通过slot-scope="props"来接收数据.
+            -->
+        </child>
+    </div>
+
+    <script>
+
+        Vue.component('child', {
+            data: function () {
+                return {
+                    list: [1,2,3,4]
+                }
+            },
+            template: `<div>
+                        <ul>
+                            <!--<li v-for="item of list">{{item}}</li>-->
+                            <slot
+                            v-for="item of list"
+                            :item=item
+                            ></slot>
+                        </ul>
+                        </div>`
+                        //子组件传递item给父组件,父组件使用props接收
+
+        })
+
+        var vm = new Vue({
+            el: '#root'
+        })
+
+    </script>
+
+</body>
+</html>

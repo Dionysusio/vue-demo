@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>计算属性,方法,侦听器</title>
+</head>
+<body>
+    <div id="app">
+        {{ fullname }}
+        {{ age }}
+    </div>
+
+</body>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                firstname: "amy",
+                lastname: "meer",
+
+            },
+            computed: {
+                fullname: {//fullname是个对象
+                    get: function () {//get方法
+                        return this.firstname + " " + this.lastname
+                    },
+                    set: function (value) {//set方法,将接收到的值打散,然后赋值给firstname,lastname
+                        var arr = value.split("");
+                        this.firstname = arr[0];
+                        this.lastname = arr[1];
+                    }
+                }
+            }
+
+        })
+
+    </script>
+
+</html>

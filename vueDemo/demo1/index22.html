@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <test: init-count="1"></test:>
+        <!-- 子组件修改传来的值，init-count 就是initCount,vue里需要加横杆-->
+    </div>
+
+</body>
+    <script>
+        Vue.component("test",{
+            props: ["initCount"],
+            //子组件接收父组件传的值
+            template:'<div> {{ count }}</div>',
+            data: function () {
+                return {
+                    count: this.initCount
+                    //子组件将值用变量保存起来
+                }
+            }
+        })
+
+        var app = new Vue({
+            //这是父组件
+            el:'#app',
+            data: {
+                parentMessage:'1111'
+
+            }
+
+            })
+
+    </script>
+</html>
+

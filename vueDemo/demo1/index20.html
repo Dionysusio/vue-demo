@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <test></test>
+        <test></test>
+        <test></test>
+        <!--调用-->
+    </div>
+
+</body>
+    <script>
+        Vue.component("test",{
+            template:'<div> {{ message }}</div>',
+            //这里一定要有一个div
+            data: function () {
+                return {
+                    message:'组件内容'
+                }
+                //我们也 可以在test外面定义一个变量，然后在这里引用，但是这样所有组件都可以用了，不好
+                //所以我们在test里面申明一个变量，这样只有它的子组件可以用。
+            }
+        })
+
+        var app = new Vue({
+            el:'#app',
+
+            })
+
+
+
+
+    </script>
+
+
+</html>

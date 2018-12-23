@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>给组件绑定原生事件</title>
+</head>
+<body>
+    <div id="root">
+        <child @click.native="handleClick"></child>
+        <!-- 这里触发的是自定义事件,在根组件methods里定义方法并不会被触发
+            .native 事件修饰符,表示监听原生事件,而不是自定义事件-->
+    </div>
+
+</body>
+    <script>
+        Vue.component('child', {
+            // template: '<div @click="handleChildClick">child</div>',
+            template: '<div>child</div>',
+            methods: {
+                handleChildClick: function () {
+                    // alert('child click')
+                    // 这里触发的是原生的事件,元素内部
+                    this.$emit('click')
+                    // 这是触发自定义事件;
+                    // 逻辑是: 子组件监听到被点击了,就触发自定义事件,而父组件正好监听了handleClick事件,于是就触发了
+                }
+            }
+        })
+
+        var vm = new Vue({
+            el: '#root',
+            methods: {
+                handleClick: function () {
+                    alert('click')
+                }
+            }
+        })
+
+    </script>
+
+</html>

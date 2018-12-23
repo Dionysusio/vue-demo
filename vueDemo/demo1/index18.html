@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message">
+        <!-- 双向绑定，输入的时候，data里同时显示-->
+        <br/>
+        <textarea v-model="text"></textarea>
+        <br/>
+        <input type="radio":checked="check">
+        <br/>
+        <input type="radio" v-model="priced" value="js"><label for="js">js</label><br />
+        <input type="radio" v-model="priced" value="html"><label for="html">html</label><br />
+        <input type="radio" v-model="priced" value="css"><label for="css">css</label><br />
+        <br/>
+        <input type="checkbox" v-model="picked" value="css2"><label for="css2">css2</label><br />
+        <br/>
+        <input type="checkbox" v-model="checked" value="js"><label for="css2">js</label><br />
+        <input type="checkbox" v-model="checked" value="html"><label for="css2">html</label><br />
+        <input type="checkbox" v-model="checked" value="css"><label for="css2">css</label><br />
+
+    </div>
+
+</body>
+    <script>
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message:"",
+                text:"",
+                check:true,
+                priced:"",
+                picked:"",
+                checked:[‘css’,'js'] //动态修改数据，初始的时候给值
+
+            }
+
+        })
+
+    </script>
+
+</html>

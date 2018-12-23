@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <ul v-for="(book,index) in filterBooks">{{ index }}{{ book.name }}</ul>
+
+    </div>
+
+</body>
+    <script>
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                books: [
+                    {name: '<<python>>'},
+                    {name: '<<django>>'},
+                    {name: '<<drf>>'},
+                    {name: '<<go>>'}
+                ],
+                user: {
+                    name: "amy",
+                    age: 25
+
+                }
+            },
+            computed:{//返回处理之后的数据，不会对原数据做更改，适用于前端搜索
+                filterBooks: function() {
+                    return this.books.filter(function(value) {
+                        return value.name.match(/go/)
+
+                    })
+                }
+
+            }
+
+        })
+
+
+    </script>
+
+
+</html>

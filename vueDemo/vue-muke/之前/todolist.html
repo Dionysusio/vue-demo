@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>todolist</title>
+    <!-- 想要实现: 点击内容提交时,提交的项能显示在下面<li> 列表里-->
+
+</head>
+<body>
+
+    <div id="root">
+        <div>
+            <input v-model="inputValue"/>
+            <!-- 展示的是实例里的data下的inputValue的值-->
+            <button @click="handleSubmit">提交</button>
+            <!-- 点击事件的函数handleSubmit定义在实例的methods里-->
+
+        </div>
+        <ul>
+            <li v-for="(item,index) of list" :key="index">
+                {{item}}
+                <!-- 遍历数组进行展示-->
+            </li>
+        </ul>
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el:'#root',
+            data:{
+                inputValue:"",
+                list: []
+            },
+            methods:{
+                handleSubmit:function () {
+                    this.list.push(this.inputValue)
+                        //向数组里push内容
+                    this.inputValue = ""
+                        //当输入完内容之后,让input框自动变成空
+                }
+            }
+
+        })
+
+    </script>
+
+</body>
+</html>

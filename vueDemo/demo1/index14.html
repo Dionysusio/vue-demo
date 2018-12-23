@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>amy's test</title>
+</head>
+<body>
+    <div id="app">
+        点击次数: {{ counter }}
+        <br/>
+        <button @click="handleClick()">+1</button>
+        <button @click="handleClick(10)">+10</button>
+    </div>
+
+</body>
+    <script>
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                counter: 0
+
+            },
+            methods:{
+                handleClick:function (num) {
+                    //接收一个参数
+                    count = num || 1
+                    this.counter += count
+
+                }
+            }
+
+        })
+
+    </script>
+
+
+</html>

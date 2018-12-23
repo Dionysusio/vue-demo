@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>v-if,v-for</title>
+</head>
+<body>
+
+    <div id="root">
+        <div v-if="show"> i am the show!</div>
+        <!--v-if: 只有show是true的时候,div才会存在; 否则删除div标签-->
+        <!--v-show: 只有show是true的时候,div才会存在; 否则隐藏div标签-->
+        <button @click="handleClick"> toggle </button>
+        <!-- 绑定事件,handleClick函数定义在methods里-->
+
+        <ul v-for="(item,index) of list" :key="index"> {{ item }} </ul>
+        <!-- v-for: 循环控制一组数据,显示页面上的dom结构-->
+
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:'#root',
+            data:{
+                show:true, //默认值:true
+                list:[1,2,3]
+
+            },
+            methods:{
+                handleClick:function () {
+                    this.show = !this.show // 让show取反,即false
+                }
+            }
+
+        })
+
+    </script>
+
+</body>
+</html>

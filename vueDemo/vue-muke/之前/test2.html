@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="root">
+        v-text="number"
+        <!--v-text: vue指令,会将html进行转义,
+            v-html 不会转义-->
+    </div>
+
+</body>
+    <script>
+        var app = new Vue({
+            el:'#root',
+            template: '<h1>{{ number }}</h1>',
+            //{{ }}  插值表达式
+            data:{
+                msg:"world!",
+                number:123
+            }
+        })
+    </script>
+
+</html>

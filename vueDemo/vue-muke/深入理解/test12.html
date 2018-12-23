@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Vue中的插槽</title>
+</head>
+<body>
+
+    <div id="root">
+        <child>
+            <!--<p>amy</p>-->
+            <!-- 这里插入一个p标签-->
+            <!--<div class="header" slot="header">header</div>-->
+            <div class="footer" slot="footer">footer</div>
+        </child>
+    </div>
+
+    <script>
+
+        Vue.component('child', {
+            props: ['content'], //接收值content
+            template: `<div>
+                        <slot name='header'>默认内容</slot>
+                        <div class='content'>content</div>
+                        <slot name='footer'></slot>
+                    </div>`
+            // 子组件使用slot标签展示父组件插入的内容,当父组件插入大量dom内容,子组件要去读取的时候适用
+            // 父组件不传的时候,子组件还可以显示默认内容
+            // 父组件给slot取名,然后子组件就可以对应的调用,否则就全部都调用了.
+        })
+
+        var vm = new Vue({
+            el: '#root'
+        })
+
+    </script>
+
+</body>
+</html>

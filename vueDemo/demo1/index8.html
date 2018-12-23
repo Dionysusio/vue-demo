@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <!--{{ text.split('').reverse().join('') }}-->
+        {{ fullname }}
+    </div>
+
+</body>
+    <script>
+
+        var app = new Vue({
+            el:'#app',
+            data:{
+                firstName:'friedrich',
+                lastName:'meer'
+            },
+            computed:{
+                fullname:{
+                    get: function () {
+                        return this.firstName + ' ' + this.lastName
+
+                    },
+
+                    set: function (value) {
+                        var names = value.split(' ')
+                        this.firstName = names[0]
+                        this.lastName = names[1]
+                        return names
+
+                    }
+
+                }
+
+            }
+
+        })
+
+
+    </script>
+
+
+</html>

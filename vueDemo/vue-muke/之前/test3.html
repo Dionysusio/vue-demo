@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="root">
+        <div v-on:click="handleClick"> {{ msg }} </div>
+        <!-- v-on: 向div标签上绑定事件, 简写 @
+        click:绑定点击事件,后跟函数handleClick,标签被点击的时候会执行这个函数
+        这个函数定义在实例的methods属性下
+        -->
+
+    </div>
+
+</body>
+    <script>
+        var app = new Vue({
+            el:'#root',
+            data:{
+                msg:"hello!"
+            },
+            methods:{
+                handleClick:function () {
+                    // alert("world")
+                this.msg = "Amy!"
+                    //当点击标签的时候,内容变成world! 也就是将data变量里的内容改变
+                    //面向数据编程,而不是面向dom编程.
+                }
+            }
+        })
+    </script>
+
+</html>

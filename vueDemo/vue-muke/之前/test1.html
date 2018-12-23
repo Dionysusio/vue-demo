@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="root">
+         <!-- 这边的id和vue的挂载点el对应-->
+         <!--<h1> hello {{ msg }}</h1>-->
+         <!--  这边定义模板,模板就是挂载点内部的内容,可以写在挂载点内部,
+         也可以写在实例的template属性里  -->
+    </div>
+</body>
+
+
+    <script>
+        var app = new Vue({
+            el:'#root',//这个是vue的挂载点
+            template: '<h1> hello {{ msg }}</h1>',
+            // 将模板写在vue实例里,而不是挂载点下,同样显示
+            data:{
+                msg:"world!"
+            }
+        })
+
+    </script>
+
+</html>

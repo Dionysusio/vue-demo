@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>计算属性与侦听器</title>
+</head>
+<body>
+
+    <div id="root">
+        姓:<input v-model="firstName"/>
+        名:<input v-model="lastName"/>
+        <!--<div> {{firstName}}{{lastName}}</div>-->
+        <div> {{fullName}}</div>
+        <div> {{count}}</div>
+        <!-- 展示fullName,count -->
+
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el:'#root',
+            data:{
+                firstName:"",
+                lastName:"",
+                count:0 //初始值为0
+            },
+            computed: { //计算属性,一个属性通过其他属性计算而来
+                fullName: function () {
+                    return this.firstName + "" + this.lastName
+                }
+            },
+            watch: { //侦听器,监听firstName值的变化,只要变化,就将count的值加1
+                  firstName: function () {
+                      this.count ++
+                  },
+                    //同理
+                  fullName: function () {
+                      this.count++
+
+                  //侦听器: 我去监听某一个数据的变化,一旦数据发生变化,
+                  //我就在侦听器里执行我的业务逻辑.
+
+                  }
+            }
+        })
+
+    </script>
+
+</body>
+</html>

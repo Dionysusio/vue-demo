@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中多个元素或组件的过渡</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="../基础/animate.css">
+    <style>
+        .v-enter,.v-leave-to {
+            opacity: 0;
+        }
+        .v-enter-active,.v-leave-active {
+            transition: opacity 1s;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root">
+        <transition mode="out-in">
+            <component :is="type"></component>
+            <!-- 动态属性绑定,通过is关联的数据,来展示对应的组件; type默认值是child -->
+            <!--<child v-if="show"></child>-->
+            <!--<child-one v-else></child-one>-->
+        </transition>
+        <button @click="handleClick">toggle</button>
+    </div>
+
+    <script>
+        Vue.component('child',{
+            template: '<div>child</div>'
+        })
+
+        Vue.component('child-one',{
+            template: '<div>child-one</div>'
+        })
+
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                type: 'child'
+            },
+            methods: {
+                handleClick: function () {
+                    this.type = this.type === 'child' ? 'child-one' : 'child'
+                    // this.type === 'child'  你是否等于child, 如果等于,就等于'child-one',
+                    // 否则就等于 'child'
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

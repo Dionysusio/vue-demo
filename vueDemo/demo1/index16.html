@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <a href="www.baidu.com" @click.prevent="handleClick('阻止a链接')">link</a>
+    </div>
+
+</body>
+    <script>
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods:{
+                handleClick:function (msg) {
+                    window.alert(msg)
+
+                }
+            }
+
+        })
+
+    </script>
+
+
+</html>

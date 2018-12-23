@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>模板语法</title>
+</head>
+<body>
+    <div id="app">
+        {{ name + ' meer'}}
+        <!-- 插值表达式-->
+        <div v-text="name + ' meer'"></div>
+        <!-- 所有v- 等指令后面的值都是js的表达式,这个name 指的是data里name的值-->
+        <div v-html="name + ' meer'"></div>
+        <!-- v-html渲染之后显示; v-text会将标签展示,和插值表达式效果一样-->
+    </div>
+
+</body>
+    <script>
+        //生命周期函数就是vue实例在某一个时间点会自动执行的函数
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                name: "amy"
+            }
+
+        })
+
+    </script>
+
+</html>

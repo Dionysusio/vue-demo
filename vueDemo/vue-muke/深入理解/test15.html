@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中使用animate.css库</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="../基础/animate.css">
+</head>
+<body>
+
+    <div id="root">
+        <transition
+            name="fade"
+            enter-active-class="animated bounce"
+            leave-active-class="animated hinge"
+        >
+            <div v-show="show">hello world</div>
+        </transition>
+        <button @click="handleClick">toggle</button>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                show: true
+            },
+            methods: {
+                handleClick: function () {
+                    this.show = !this.show
+                }
+            }
+        })
+
+    </script>
+
+</body>
+</html>

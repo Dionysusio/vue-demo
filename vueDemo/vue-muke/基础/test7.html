@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Vue中的样式绑定</title>
+    <style>
+        .activated {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div @click="handleDivClick"
+             :class="[activated]"
+        >
+            hello world
+        </div>
+        <!--
+            :class="{activated: isActivated}",class是个对象,class标签是否显示取决于isActivated的值
+            我们可以定义activated的样式,所以只要isActivated的值是true,就显示红色
+            :class="[activated]" 和数组绑定
+            这就是class的对象绑定.
+        -->
+    </div>
+
+</body>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                activated: ""
+                // isActivated: false
+                //默认是false
+            },
+            methods: {
+                handleDivClick: function () {
+                    // this.isActivated = !this.isActivated;
+                    // 点击,变成true了,是红色;
+                    // 再点击,当是true时,改为false,是黑色,以此类推
+
+                    if (this.activated === "activated") {
+                        this.activated = "";
+                    }else {
+                        this.activated = "activated";
+                    }
+
+                }
+            }
+
+        })
+
+    </script>
+
+</html>

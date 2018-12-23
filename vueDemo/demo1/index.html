@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!-- 这边的id和vue的挂载点对应-->
+        {{ message }}
+    </div>
+
+</body>
+    <script>
+        var app = new Vue({
+            el:'#app',//这个是vue的挂载点
+            data:{
+                message:"hello vue.js"
+            }
+
+
+        })
+
+
+    </script>
+
+
+</html>

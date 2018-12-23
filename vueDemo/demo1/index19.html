@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <!--组件，只要不是标准的标签，都是组件-->
+        <test></test>
+        <test></test>
+        <test></test>
+        <my-test></my-test>
+
+    </div>
+
+</body>
+    <script>
+        Vue.component("test",{
+            //注册全局组件，全局生效。test 是组件名，template是选项
+            template:'<div>这里是组件里的内容</div>'
+        })
+
+        var ComponentC = {template:'<div>这里是mytest组件里的内容</div>'}
+        //局部组件，当前组件生效。
+        var app = new Vue({
+            el:'#app',
+            components:{
+                'my-test':ComponentC
+
+            }
+
+        })
+
+
+
+
+    </script>
+
+
+</html>

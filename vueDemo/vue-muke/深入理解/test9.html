@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>组件参数校验与非props特性</title>
+</head>
+<body>
+    <div id="app">
+        <!--<child content="123"></child>-->
+        <child content="hell"></child>
+    </div>
+
+</body>
+    <script>
+        Vue.component('child', {
+            props: {
+                // content: String
+            //     required: true,
+            //     default: 'default value',
+                // 子组件可以在这里校验父组件传来的数据类型.
+                // 可以是字符串,数字,对象
+                content: {
+                    type: String,
+                    validator: function () {
+                        return (value.length > 5)
+                    }
+                }
+
+            },
+
+            template: '<div>{{ content }}</div>'
+        })
+
+    </script>
+
+</html>

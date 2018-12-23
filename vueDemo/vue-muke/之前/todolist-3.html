@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>todo list组件拆分</title>
+
+</head>
+<body>
+    <div id="root">
+        <div>
+            <input v-model="inputValue"/>
+            <button @click="handleSubmit">提交</button>
+        </div>
+            <ul>
+                <todo-item
+                v-for="(item,index) of list"
+                :key="index"
+                :content="item"
+                :index="index"
+                @delete="handleDelete"
+                >
+               <!-- 父组件在创建子组件时,监听子组建的delete,
+                   如果触发delete事件,执行handleDelete函数,是在父组件中的方法;
+                   父组件通过属性的方式向子组件传递数据,
+                   子组件通过发布订阅模式,发布一个事件,父组件正好订阅了这个事件,子组件就可以向父组件传递数据了;
+               -->
+
+                </todo-item>
+            </ul>
+
+    </div>
+
+
+    <script>
+
+        Vue.component('todo-item',{
+            props: ['content','index'],
+            template:　'<li @click="handleClick"> {{ content }}</li>',//点击内容触发handleClick事件,
+            methods: {
+                handleClick: function () {
+                    this.$emit('delete',this.index)
+                    //$emit 触发自定义事件,进行删除;
+                }
+            }
+        })
+
+
+        var app = new Vue({
+            el:'#root',
+            //对于根实例,如果没有定义模板,它会以挂载点el下的所有内容当做模板来使用
+            data: {
+                inputValue: "",
+                list: []
+
+            },
+            methods:{
+                handleSubmit:function () {
+                    this.list.push(this.inputValue)
+                    this.inputValue = ""
+                 },
+                handleDelete:function (index) {
+                    // alert(index)
+                    this.list.splice(index,1)
+                    //将index删除
+                }
+              }
+            })
+
+    </script>
+
+
+
+
+
+
+</body>
+</html>

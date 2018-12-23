@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>属性绑定和双向数据绑定</title>
+</head>
+<body>
+
+    <div id="root">
+        <div v-bind:title="title"> hello amy! </div>
+           <!--如何将title的值绑定到data里的title上呢? 使用v-bind
+           "title": 这个title指的是实例 data下的title变量. 简写 :
+           -->
+        <input v-model="content"/>
+        <!-- 双向绑定: input的内容变了,content的内容也会改变-->
+        <div> {{ content }}</div>
+
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:'#root',
+            data:{
+                title: "this is hello world,you are the most!",
+                content: "this is content "
+                // 这里内容改变,input内容会改变
+            }
+            // title: 当鼠标放上去的提示语
+            // 有时候我们希望title是可变的,那改变data里的title就可以了
+
+
+        })
+
+    </script>
+
+</body>
+</html>

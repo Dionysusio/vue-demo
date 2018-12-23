@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中同时使用过渡和动画</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="./animate.css">
+    <style>
+        .fade-enter,
+        .fade-leave-to {
+            opacity: 0;
+        }
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 3s;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="root">
+        <transition
+            type="transition"
+            name="fade"
+            appear
+            enter-active-class="animated bounce fade-enter-active"
+            leave-active-class="animated pulse fade-leave-active"
+            appear-active-class="animated bounce"
+        >
+            <div v-show="show">hello world</div>
+        </transition>
+        <button @click="handleClick">toggle</button>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                show: true
+            },
+            methods: {
+                handleClick: function () {
+                    this.show = !this.show
+                }
+            }
+        })
+
+    </script>
+
+</body>
+</html>

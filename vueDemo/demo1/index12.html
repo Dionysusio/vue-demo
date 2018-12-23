@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <ul v-for="(book,index) in books">{{ index }}{{ book.name }}</ul>
+
+        <ul v-for="(key,value,index) in user">{{ index }},{{key}},{{value}}</ul>
+
+    </div>
+
+</body>
+    <script>
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                books: [
+                    {name: '<<python>>'},
+                    {name: '<<django>>'},
+                    {name: '<<drf>>'},
+                    {name: '<<go>>'}
+                ],
+                user: {
+                    name: "amy",
+                    age: 25
+
+                }
+            }
+
+        })
+
+    </script>
+
+
+</html>

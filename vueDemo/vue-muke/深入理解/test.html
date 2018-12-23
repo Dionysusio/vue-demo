@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的动画封装</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+</head>
+<body>
+
+    <div id="root">
+        <fade :show="show">
+            <div>hello world!</div>
+        </fade>
+
+        <fade :show="show">
+            <h1>hello dear amy!</h1>
+        </fade>
+        <!-- 外面直接调用即可,可以调用无数遍-->
+
+        <button @click="handleClick">toggle</button>
+    </div>
+
+    <script>
+        //所有的动画都写在fade组件里,外部只需要调用fade组件就可以了,也不需要在全局写样式了
+        Vue.component('fade', {
+            props: ['show'],
+            template:　`
+                <transition @before-enter="handleBeforeEnter" @enter="handleEnter">
+                    <slot v-if="show"></slot>
+                </transition>
+                `,
+            //在template中将样式封装
+            methods: {
+                handleBeforeEnter: function (el) {
+                    el.style.color = 'red'
+                },
+                handleEnter: function (el,done) {
+                    setTimeout(()  => {//异步动画,2秒之后变绿色
+                        el.style.color = 'green'
+                        done()//要手动调用个done
+                    },2000)
+                }
+            }
+        })
+
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                show: false
+            },
+            methods: {
+                handleClick: function () {
+                    this.show = !this.show
+                }
+            }
+        })
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>todo list组件拆分</title>
+
+</head>
+<body>
+    <div id="root">
+        <div>
+            <input v-model="inputValue"/>
+            <button @click="handleSubmit">提交</button>
+
+            </ul>  </div>
+            <ul>
+                <todo-item
+                v-for="(item,index) of list"
+                :key="index">
+
+                </todo-item>
+                <!--在ul里使用组件-->
+    </div>
+
+    <script>
+        Vue.component('todo-item',{
+        //component:就是用来定义组件的，组件也可以拥有自己的模板template.
+            //全局组件
+            template:　'<li>item</li>'
+        })
+
+        var TodoItem = {
+            template:　'<li>item2</li>'
+            //局部组件,在外部模板ul里无法直接调用
+        }
+
+
+
+        var app = new Vue({
+            el:'#root',
+            components:{
+                'todo-item': TodoItem
+            },//局部组件想要被外部访问,需在根实例中注册,使用components注册
+              //表示在我的实例里要使用TodoItem这个组件,输入啥显示的都是item2
+            data: {
+                inputValue: "",
+                list: [],
+
+            },
+
+            methods:{
+                handleSubmit:function () {
+                    this.list.push(this.inputValue)
+                        //向数组里push内容
+                    this.inputValue = ""
+                    //当输入完内容之后,input框自动变成空
+                 }
+              }
+            })
+
+    </script>
+
+</body>
+</html>

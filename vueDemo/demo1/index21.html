@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="parentMessage">
+        <test> :error-text="parentMessage"</test>
+        <!--调用的时候给子组件传值-->
+
+    </div>
+
+</body>
+    <script>
+        Vue.component("test",{
+            props: ["errorText"],//接收值
+            template:'<div>这是子组件来组父组件的消息:<br/> {{ errorText }} </div>',
+            //展示值
+
+        })
+
+        var app = new Vue({
+            el:'#app',
+            data: {
+                parentMessage:''
+            }
+
+        })
+
+    </script>
+</html>
